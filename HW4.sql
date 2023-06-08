@@ -26,6 +26,15 @@ WHERE sh.id NOT IN (
 		AND c.name IN ("Murzik", "Zuza")
 );
 
+SELECT s.shopname, GROUP_CONCAT(c.name) cats
+FROM shops s
+LEFT JOIN cats c ON s.id = c.shop_id
+GROUP BY s.shopname
+HAVING
+	cats IS NULL OR
+	cats NOT LIKE "%Murzik%"
+	AND cats NOT LIKE "%Zuza%";
+
 # 4. Вывести название и цену для всех анализов, которые продавались 5 февраля 2020 и всю следующую неделю
 SET @i = 0;
 SELECT @i:=@i+1 "#", an_id, an_name, an_price
