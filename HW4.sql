@@ -42,3 +42,10 @@ FROM analysis a
 JOIN orders o
 ON o.ord_an = a.an_id
 WHERE o.ord_datetime BETWEEN "2020-02-05" AND "2020-02-13";
+
+SELECT ROW_NUMBER() OVER () "#",
+	an_id, an_name, an_price
+FROM analysis a
+JOIN orders o
+ON o.ord_an = a.an_id
+WHERE o.ord_datetime BETWEEN "2020-02-05" AND "2020-02-13";
